@@ -88,9 +88,9 @@ int main(int, char**)
             ImGuiStyle& Style = ImGui::GetStyle();
             auto Color = Style.Colors;
 
-            static bool WinPos = true;//ÓÃÓÚ³õÊ¼»¯´°¿ÚÎ»ÖÃ
-            int Screen_Width{ GetSystemMetrics(SM_CXSCREEN) };//»ñÈ¡ÏÔÊ¾Æ÷µÄ¿í
-            int Screen_Heigth{ GetSystemMetrics(SM_CYSCREEN) };//»ñÈ¡ÏÔÊ¾Æ÷µÄ¸ß
+            static bool WinPos = true;//ç”¨äºåˆå§‹åŒ–çª—å£ä½ç½®
+            int Screen_Width{ GetSystemMetrics(SM_CXSCREEN) };//è·å–æ˜¾ç¤ºå™¨çš„å®½
+            int Screen_Heigth{ GetSystemMetrics(SM_CYSCREEN) };//è·å–æ˜¾ç¤ºå™¨çš„é«˜
 
             static bool CheckBox_1 = false, CheckBox_2 = true;
             static int InputInt = 0;
@@ -208,15 +208,15 @@ int main(int, char**)
             }
 
 
-            if (WinPos)//³õÊ¼»¯´°¿Ú
+            if (WinPos)//åˆå§‹åŒ–çª—å£
             {
                 ImGui::SetNextWindowPos({ float(Screen_Width - 600) / 2,float(Screen_Heigth - 400) / 2 });
-                WinPos = false;//³õÊ¼»¯Íê±Ï
+                WinPos = false;//åˆå§‹åŒ–å®Œæ¯•
             }
 
 
-            ImGui::Begin(u8"ImGui Tool", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings);//¿ªÊ¼»æÖÆ´°¿Ú
-            ImGui::SetWindowSize({ 600.0f,400.0f });//ÉèÖÃ´°¿Ú´óĞ¡
+            ImGui::Begin(u8"ImGui Tool", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings);//å¼€å§‹ç»˜åˆ¶çª—å£
+            ImGui::SetWindowSize({ 600.0f,400.0f });//è®¾ç½®çª—å£å¤§å°
 
 
             {
@@ -271,11 +271,11 @@ int main(int, char**)
                 ImGui::PopStyleColor();
 
                 ImGui::SetCursorPos({ 430.0f,330.0f });
-                ImGui::Text(u8"Ö÷ÌâÑÕÉ«");
+                ImGui::Text(u8"ä¸»é¢˜é¢œè‰²");
                 ImGui::SameLine();
                 ImGui::SetCursorPos({ 505.0f,328.0f });
                 ImGui::SetNextItemWidth(80.0f);
-                ImGui::Combo(u8" ", &Color_, u8"ºìÉ«\0ÂÌÉ«\0À¶É«\0³ÈÉ«");
+                ImGui::Combo(u8" ", &Color_, u8"çº¢è‰²\0ç»¿è‰²\0è“è‰²\0æ©™è‰²");
 
                 time_t t = time(0);
                 char tmp[32] = { NULL };
@@ -295,9 +295,9 @@ int main(int, char**)
                 ImGui::BulletText(u8"Panel");
                 ImGui::PopFont();
                 ImGui::SameLine();
-                Helpmarker(u8"Ãæ°åÊ¾Àı", Color[ImGuiCol_Button]);
+                Helpmarker(u8"é¢æ¿ç¤ºä¾‹", Color[ImGuiCol_Button]);
                 ImGui::Separator();
-                ImGui::TextColored(Color[ImGuiCol_Button], u8"\tÕâÖÖ¶«Î÷ÎÒÃ»·¨ºÍÄã½âÊÍ\nÒòÎªÎÒÖ»ÊÇ¸öĞ¡Ãæ°å×Ó");
+                ImGui::TextColored(Color[ImGuiCol_Button], u8"\tè¿™ç§ä¸œè¥¿æˆ‘æ²¡æ³•å’Œä½ è§£é‡Š\nå› ä¸ºæˆ‘åªæ˜¯ä¸ªå°é¢æ¿å­");
 
                 break;
             case Tab::Button:
@@ -305,37 +305,37 @@ int main(int, char**)
                 ImGui::BulletText(u8"Button");
                 ImGui::PopFont();
                 ImGui::SameLine();
-                Helpmarker(u8"°´Å¥Ê¾Àı", Color[ImGuiCol_Button]);
+                Helpmarker(u8"æŒ‰é’®ç¤ºä¾‹", Color[ImGuiCol_Button]);
                 ImGui::Separator();
 
-                ImGui::Button(u8"ÎÒÊÇ¸ö°´Å¥×Ó", {120.0f,40.0f});
-                ImGui::Button(u8"°´Å¥×Ó", {70.0f,35.0f});
+                ImGui::Button(u8"æˆ‘æ˜¯ä¸ªæŒ‰é’®å­", {120.0f,40.0f});
+                ImGui::Button(u8"æŒ‰é’®å­", {70.0f,35.0f});
                 break;
             case Tab::Input:
                 ImGui::PushFont(Font_Big);
                 ImGui::BulletText(u8"Input");
                 ImGui::PopFont();
                 ImGui::SameLine();
-                Helpmarker(u8"ÊäÈëÊ¾Àı", Color[ImGuiCol_Button]);
+                Helpmarker(u8"è¾“å…¥ç¤ºä¾‹", Color[ImGuiCol_Button]);
                 ImGui::Separator();
 
-                ImGui::InputInt(u8"IntÀàĞÍÊäÈë", &InputInt);
-                ImGui::InputFloat(u8"FloatÀàĞÍÊäÈë", &InputFloat);
-                ImGui::InputText(u8"char[]ÀàĞÍÊäÈë", &InputString[80], IM_ARRAYSIZE(InputString));
-                ImGui::SliderInt(u8"IntÀàĞÍ»¬¿é", &InputInt, 0, 100);
-                ImGui::SliderFloat(u8"FloatÀàĞÍ»¬¿é", &InputFloat, 0.0F, 100.0F);
-                ImGui::Combo(u8"Ñ¡Ôñ¿ò", &Comb, u8"A11\0A22\0A33\0A44");
+                ImGui::InputInt(u8"Intç±»å‹è¾“å…¥", &InputInt);
+                ImGui::InputFloat(u8"Floatç±»å‹è¾“å…¥", &InputFloat);
+                ImGui::InputText(u8"char[]ç±»å‹è¾“å…¥", InputString, IM_ARRAYSIZE(InputString));
+                ImGui::SliderInt(u8"Intç±»å‹æ»‘å—", &InputInt, 0, 100);
+                ImGui::SliderFloat(u8"Floatç±»å‹æ»‘å—", &InputFloat, 0.0F, 100.0F);
+                ImGui::Combo(u8"é€‰æ‹©æ¡†", &Comb, u8"A11\0A22\0A33\0A44");
                 break;
             case Tab::CheckBox:
                 ImGui::PushFont(Font_Big);
                 ImGui::BulletText(u8"CheckBox");
                 ImGui::PopFont();
                 ImGui::SameLine();
-                Helpmarker(u8"¸´Ñ¡¿òÊ¾Àı", Color[ImGuiCol_Button]);
+                Helpmarker(u8"å¤é€‰æ¡†ç¤ºä¾‹", Color[ImGuiCol_Button]);
                 ImGui::Separator();
 
-                ImGui::Checkbox(u8"¸´Ñ¡¿ò-1", &CheckBox_1);
-                ImGui::Checkbox(u8"¸´Ñ¡¿ò-2", &CheckBox_2);
+                ImGui::Checkbox(u8"å¤é€‰æ¡†-1", &CheckBox_1);
+                ImGui::Checkbox(u8"å¤é€‰æ¡†-2", &CheckBox_2);
                 break;
             }
             ImGui::EndChild();
